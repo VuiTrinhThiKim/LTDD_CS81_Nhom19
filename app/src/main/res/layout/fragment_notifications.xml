@@ -56,26 +56,27 @@ tools:context=".ui.notifications.NotificationsFragment">
         android:text="Loại: "
         android:textSize="24dp"/>
     <RadioGroup
+        android:id="@+id/rg_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/cb_nhatro"
+            android:id="@+id/rb_nhatro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:text="Nhà trọ"
             android:textSize="18dp"/>
         <RadioButton
-            android:id="@+id/cb_chungcu"
+            android:id="@+id/rb_chungcu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
             android:text="Chung cư"
             android:textSize="18dp"/>
         <RadioButton
-            android:id="@+id/cb_canho"
+            android:id="@+id/rb_canho"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
@@ -121,9 +122,13 @@ tools:context=".ui.notifications.NotificationsFragment">
         android:text="Khu vực: "
         android:textSize="24dp" />
 
-    <ListView
-        android:layout_width="165dp"
-        android:layout_height="428dp" />
+    <Spinner
+        android:id="@+id/sp_area"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:textSize="24sp"/>
+
 </LinearLayout>
 
 <LinearLayout
