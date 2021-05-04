@@ -23,7 +23,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("drop Table if exists ForRentDetails");
     }
 
-    public boolean insertPhongTroData(String address, String type, double price, String area, int contact,String description) {
+    public boolean insertDBData(String address, String type, double price, String area, int contact,String description) {
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("address", address);
@@ -39,7 +39,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return true;
     }
-    public boolean updatePhongTroData(String address, String type, double price, double area, int contact,String details) {
+    public boolean updateDBData(String address, String type, double price, double area, int contact,String details) {
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("type", type);
@@ -64,7 +64,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public boolean deletePhongTroData(String address) {
+    public boolean deleteDBData(String address) {
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("select * from ForRentDetails where address = ?", new String[] {address});
 

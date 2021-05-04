@@ -125,9 +125,8 @@ tools:context=".ui.notifications.NotificationsFragment">
     <Spinner
         android:id="@+id/sp_area"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:textSize="24sp"/>
+        android:layout_height="45dp"
+        android:layout_marginLeft="15dp"/>
 
 </LinearLayout>
 

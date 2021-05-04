@@ -32,9 +32,9 @@ public class DashboardFragment extends Fragment {
             @SuppressLint("ResourceType")
             @Override
             public void onClick(View v) {
-                DataForRentFragment data = new DataForRentFragment();
+                DashboardFragment dashboardFragment = new DashboardFragment();
                 FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-                transaction.replace(R.id.nav_host_fragment, data);
+                transaction.replace(R.id.nav_host_fragment, dashboardFragment);
                 transaction.commit();
             }
         });
