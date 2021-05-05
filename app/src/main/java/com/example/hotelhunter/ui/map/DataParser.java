@@ -1,4 +1,4 @@
-package com.example.hotelhunter.ui.home;
+package com.example.hotelhunter.ui.map;
 
 import org.json.JSONArray;
 import org.json.JSONException;

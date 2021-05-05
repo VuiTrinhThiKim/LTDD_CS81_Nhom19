@@ -15,7 +15,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create Table ForRentDetails(address TEXT primary key, type TEXT, price double, area TEXT, contact int, description TEXT)");
+        db.execSQL("create Table ForRentDetails(address TEXT primary key, type TEXT, int double, area TEXT, contact TEXT, description TEXT)");
     }
 
     @Override
@@ -23,7 +23,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("drop Table if exists ForRentDetails");
     }
 
-    public boolean insertDBData(String address, String type, double price, String area, int contact,String description) {
+    public boolean insertDBData(String address, String type, int price, String area, String contact,String description) {
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("address", address);
@@ -39,7 +39,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return true;
     }
-    public boolean updateDBData(String address, String type, double price, double area, int contact,String details) {
+    public boolean updateDBData(String address, String type, int price, String area, String contact,String details) {
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("type", type);
@@ -80,5 +80,11 @@ public class DBHelper extends SQLiteOpenHelper {
         else {
             return false;
         }
+    }
+    public Cursor viewDBData() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("Select * from ForRentDetails", null);
+
+        return cursor;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.hotelhunter.ui.home;
+package com.example.hotelhunter.ui.map;
 
 import java.io.BufferedReader;
 import java.io.IOException;

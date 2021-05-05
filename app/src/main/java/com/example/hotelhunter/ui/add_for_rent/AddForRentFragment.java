@@ -1,4 +1,4 @@
-package com.example.hotelhunter.ui.notifications;
+package com.example.hotelhunter.ui.add_for_rent;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -10,36 +10,36 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.hotelhunter.R;
 import com.example.hotelhunter.dbForRent.DBHelper;
 
-public class NotificationsFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+public class AddForRentFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
     EditText edtAddress, edtPrice, edtContact, edtDescription;
     RadioGroup rgType;
     RadioButton rbNhaTro, rbChungCu, rbCanHo;
     Spinner spinnerArea;
     String[] areas = {"Quận 1", "Quận 2", "Quận 3", "Quận 4", "Quận 5", "Quận 6", "Quận 7", "Quận 8", "Quận 9", "Quận 10", "Quận 11", "Quận 12",
-                        "Gò Vấp", "Tân Bình", "Tân Phú", "Phú Nhuận", "Bình Thạnh", "Bình Tân", "Bình Chánh", "Hóc Môn", "Củ Chi", "Cần Giờ", "-Chọn quận/huyện-"};
+                        "Quận Gò Vấp", "Quận Tân Bình", "Quận Tân Phú", "Quận Phú Nhuận", "Quận Bình Thạnh", "Quận Bình Tân",
+                        "Huyện Bình Chánh", "Huyện Hóc Môn", "Huyện Củ Chi", "Huyện Cần Giờ", "-Chọn quận/huyện-"};
     Button btInsert, btnReset;
     DBHelper db;
 
+    public AddForRentFragment() {
+
+    }
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_notifications, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_for_rent, container, false);
 
         edtAddress = (EditText) view.findViewById(R.id.edt_address);
         edtPrice = (EditText) view.findViewById(R.id.edt_price);
@@ -71,9 +71,9 @@ public class NotificationsFragment extends Fragment implements AdapterView.OnIte
                 int selectedID = rgType.getCheckedRadioButtonId();
                 RadioButton selectedRadioButton = (RadioButton) getView().findViewById(selectedID);
                 String typeTxt = selectedRadioButton.getText().toString();
-                double price = Double.parseDouble(edtPrice.getText().toString());
+                int price = Integer.parseInt(edtPrice.getText().toString());
                 String areaTxt = spinnerArea.getSelectedItem().toString();
-                int contact = Integer.parseInt(edtContact.getText().toString());
+                String contact = edtContact.getText().toString();
                 String description = edtDescription.getText().toString();
 
                 Boolean checkInsertData = db.insertDBData(addressTxt,typeTxt, price, areaTxt, contact, description);
@@ -87,12 +87,12 @@ public class NotificationsFragment extends Fragment implements AdapterView.OnIte
 
                         }
                     });
-                    String msg = addressTxt + "\n";
-                    msg += typeTxt + "\n";
-                    msg += String.valueOf(price) + "\n";
-                    msg += areaTxt + "\n";
-                    msg += String.valueOf(contact) + "\n";
-                    msg += description + "\n";
+                    String msg = "Địa chỉ: " + addressTxt + "\n\n";
+                    msg += "Loại: " + typeTxt + "\n";
+                    msg += "Giá: " + String.valueOf(price) + "\n";
+                    msg += "Khu vực: " + areaTxt + "\n";
+                    msg += "Số điện thoại: " + contact + "\n";
+                    msg += "Mô tả" + description + "\n";
                     builder.setMessage(msg);
                     builder.create().show();
                 }

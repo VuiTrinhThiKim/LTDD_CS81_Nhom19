@@ -1,8 +1,7 @@
-package com.example.hotelhunter.ui.home;
+package com.example.hotelhunter.ui.map;
 
 import android.os.AsyncTask;
 
-import com.example.hotelhunter.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;

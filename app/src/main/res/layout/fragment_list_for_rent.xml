@@ -25,7 +25,7 @@
         android:text="Thêm địa điểm cho thuê" />
 
     <ListView
-        android:id="@+id/lv_"
+        android:id="@+id/lv_for_rent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </LinearLayout>
