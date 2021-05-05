@@ -182,8 +182,7 @@ tools:context=".ui.add_for_rent.AddForRentFragment">
             android:layout_marginRight="20dp"
             android:background="@drawable/bg_edt_data_for_rent"
             android:inputType="text"
-            android:maxLines="3"
-            android:textAlignment="textStart" />
+            android:textAlignment="viewStart" />
     </LinearLayout>
 
     <LinearLayout

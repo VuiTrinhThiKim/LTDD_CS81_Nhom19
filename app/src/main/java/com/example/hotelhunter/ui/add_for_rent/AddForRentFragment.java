@@ -63,7 +63,11 @@ public class AddForRentFragment extends Fragment implements AdapterView.OnItemSe
             @Override
             public void onClick(View v) {
 
-                String addressTxt = edtAddress.getText().toString();
+                if (edtAddress.length() == 0) {
+                    Toast.makeText(getActivity().getApplicationContext(), "Vui lòng điền đúng địa chỉ", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                String addressTxt = edtAddress.getText().toString().trim();
                 if ((rgType.getCheckedRadioButtonId() == -1)) {
                     Toast.makeText(getActivity().getApplicationContext(), "Vui lòng chọn loại phòng cho thuê", Toast.LENGTH_SHORT).show();
                     return;
@@ -71,10 +75,26 @@ public class AddForRentFragment extends Fragment implements AdapterView.OnItemSe
                 int selectedID = rgType.getCheckedRadioButtonId();
                 RadioButton selectedRadioButton = (RadioButton) getView().findViewById(selectedID);
                 String typeTxt = selectedRadioButton.getText().toString();
+                if (edtPrice.getText().toString().length() < 6) {
+                    Toast.makeText(getActivity().getApplicationContext(), "Giá phòng không hợp lệ", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 int price = Integer.parseInt(edtPrice.getText().toString());
+                if(spinnerArea.getSelectedItem().toString() == "-Chọn quận/huyện-") {
+                    Toast.makeText(getActivity().getApplicationContext(), "Vui lòng chọn khu vực", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 String areaTxt = spinnerArea.getSelectedItem().toString();
+                if (edtContact.getText().toString().length() != 10 || !(edtContact.getText().toString().startsWith("0"))) {
+                    Toast.makeText(getActivity().getApplicationContext(), "Số điện thoại không hợp lệ", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 String contact = edtContact.getText().toString();
-                String description = edtDescription.getText().toString();
+                if (edtDescription.getText().toString().length() <= 10) {
+                    Toast.makeText(getActivity().getApplicationContext(), "Bạn phải nhập mô tả", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                String description = edtDescription.getText().toString().trim();
 
                 Boolean checkInsertData = db.insertDBData(addressTxt,typeTxt, price, areaTxt, contact, description);
                 if (checkInsertData == true) {
@@ -92,22 +112,12 @@ public class AddForRentFragment extends Fragment implements AdapterView.OnItemSe
                     msg += "Giá: " + String.valueOf(price) + "\n";
                     msg += "Khu vực: " + areaTxt + "\n";
                     msg += "Số điện thoại: " + contact + "\n";
-                    msg += "Mô tả" + description + "\n";
+                    msg += "Mô tả: " + description + "\n";
                     builder.setMessage(msg);
                     builder.create().show();
                 }
                 else {
-                    AlertDialog.Builder builderFailded = new  AlertDialog.Builder(getActivity());
-                    builderFailded.setTitle("THÊM THÔNG TIN THẤT BẠI2");
-                    builderFailded.setPositiveButton("Đóng", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
 
-                        }
-                    });
-                    String msgFailed = "Địa chỉ: " + addressTxt + " đã có trong danh sách thông tin cho thuê\n";
-                    builderFailded.setMessage(msgFailed);
-                    builderFailded.create().show();
                 }
             }
         });

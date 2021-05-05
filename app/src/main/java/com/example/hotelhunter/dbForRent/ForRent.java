@@ -8,6 +8,15 @@ public class ForRent {
     private String contact;
     private String description;
 
+    public ForRent(String address, String type, int price, String area, String contact,String description) {
+        this.address = address;
+        this.type = type;
+        this.price = price;
+        this.area = area;
+        this.contact = contact;
+        this.description = description;
+    }
+
     public String getAddress() {
         return address;
     }
