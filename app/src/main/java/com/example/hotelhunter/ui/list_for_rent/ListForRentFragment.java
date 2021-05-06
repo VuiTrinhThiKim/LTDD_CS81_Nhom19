@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 
 import com.example.hotelhunter.dbForRent.ForRent;
@@ -22,18 +23,10 @@ import java.util.ArrayList;
 
 public class ListForRentFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
-    Button btnSort;
-    DBHelper db, dbSort;
-    ArrayList<ForRent> mForRentList, mForRentSort;
-    ListView lvForRent, lvForRentSort;
-
-    String[] sortArea = {"Tất cả", "Quận 1", "Quận 2", "Quận 3", "Quận 4", "Quận 5", "Quận 6", "Quận 7", "Quận 8", "Quận 9", "Quận 10", "Quận 11", "Quận 12",
-            "Quận Gò Vấp", "Quận Tân Bình", "Quận Tân Phú", "Quận Phú Nhuận", "Quận Bình Thạnh", "Quận Bình Tân",
-            "Huyện Bình Chánh", "Huyện Hóc Môn", "Huyện Củ Chi", "Huyện Cần Giờ"};
-    String[] sortPrice = {"Tất cả","Tăng dần", "Giảm dần"};
-    String[] sortType = {"Tất cả", "Nhà trọ", "Chung cư", "Căn hộ"};
-
-    Spinner spinnerAreas, spinnerPrice, spinnerType;
+    DBHelper db;
+    ArrayList<ForRent> mForRentList;
+    ListView lvForRent, lvSearch;
+    private SearchView searchView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -62,32 +55,32 @@ public class ListForRentFragment extends Fragment implements AdapterView.OnItemS
         ForRentListAdapter myAdapter = new ForRentListAdapter(getActivity().getApplicationContext(),mForRentList);
         lvForRent.setAdapter(myAdapter);
 
-        spinnerAreas = (Spinner) view.findViewById(R.id.spinner_area);
-        spinnerPrice = (Spinner) view.findViewById(R.id.spinner_price);
-        spinnerType = (Spinner) view.findViewById(R.id.spinner_type);
-        AddSpinner(spinnerAreas, sortArea);
-        AddSpinner(spinnerPrice, sortPrice);
-        AddSpinner(spinnerType, sortType);
 
-        btnSort = (Button) view.findViewById(R.id.btn_sort);
-
-        btnSort.setOnClickListener(new View.OnClickListener() {
+        searchView = (SearchView) view.findViewById(R.id.item_search);
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+        searchView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String spArea = spinnerAreas.toString();
-                String spPrice = spinnerPrice.toString();
-                String spType = spinnerType.toString();
-                if (spinnerAreas.getSelectedItem().toString() != "Tất cả" || spinnerPrice.getSelectedItem().toString() != "Tất cả" ||
-                        spinnerType.getSelectedItem().toString() != "Tất cả"){
-                    lvForRent.setVisibility(View.GONE);
-                    /*dbSort = new DBHelper(getActivity());
-                    lvForRentSort = (ListView) view.findViewById(R.id.lv_for_rent);
-                    mForRentSort = db.viewDBDataSort(spArea, spPrice, spType);
-                    ForRentListAdapter myAdapter = new ForRentListAdapter(getActivity().getApplicationContext(),mForRentSort);
-                    lvForRentSort.setAdapter(myAdapter);
-                    lvForRentSort.setVisibility(view.INVISIBLE);*/
-                }
 
+            }
+        });
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                ArrayList<ForRent> forRentListSearch = new ArrayList<>();
+                DBHelper searchDB = new DBHelper(getActivity());
+                forRentListSearch  = searchDB.searchDBData(newText);
+
+                lvSearch = (ListView) getView().findViewById(R.id.lv_for_rent);
+
+                ForRentListAdapter myAdapterSearch = new ForRentListAdapter(getActivity().getApplicationContext(),forRentListSearch);
+                lvSearch.setAdapter(myAdapterSearch);
+                return true;
             }
         });
         return view;
@@ -115,4 +108,6 @@ public class ListForRentFragment extends Fragment implements AdapterView.OnItemS
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+
 }

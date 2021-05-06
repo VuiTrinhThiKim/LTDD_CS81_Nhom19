@@ -33,9 +33,8 @@ public class MainActivity extends AppCompatActivity {
                 R.id.navigation_map, R.id.navigation_list_for_rent, R.id.navigation_add_for_rent)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-        //Hide actiorbar
-        this.getSupportActionBar().hide();
     }
         /*viewPager2 = findViewById(R.id.viewpager2);
         bottomNavigationView = findViewById(R.id.nav_view);

@@ -59,6 +59,21 @@ public class AddForRentFragment extends Fragment implements AdapterView.OnItemSe
         AddSpinner();
 
         db = new DBHelper(getActivity());
+
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edtAddress.setText("");
+                edtAddress.setHint(" VD: 371 Nguyễn Kiệm, phường 3, quận Gò Vấp, TP. HCM");
+                rgType.clearCheck();
+                edtPrice.setText("");
+                edtPrice.setHint(" VD: 3000000");
+                AddSpinner();
+                edtContact.setText("");
+                edtDescription.setText("");
+                Toast.makeText(getActivity(), "Đặt lại", Toast.LENGTH_SHORT).show();
+            }
+        });
         btInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

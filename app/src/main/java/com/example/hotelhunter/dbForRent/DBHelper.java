@@ -11,7 +11,6 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
-    Cursor cursorS;
     public DBHelper(@Nullable Context context) {
         super(context, "ForRentData.db", null, 1);
     }
@@ -103,60 +102,27 @@ public class DBHelper extends SQLiteOpenHelper {
         return forRentList;
     }
 
-    /*public ArrayList<ForRent> viewDBDataSort(String areaS, String priceS, String typeS) {
-        ArrayList<ForRent> forRentList = new ArrayList<>();
+    public ArrayList<ForRent> searchDBData(String text) {
+        ArrayList<ForRent> forRentListSearch = new ArrayList<>();
+        String textS = text.trim();
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("type", typeS);
-        contentValues.put("area", areaS);
-        contentValues.put("price", priceS);
+        String query = "select * from ForRentDetails " +
+                "where address like '%" + textS + "%' OR type like'%" + textS + "%' OR " +
+                "price like '%" + Integer.parseInt(textS) + "%' OR area like'%" + textS + "%' OR " +
+                "contact like '%" + textS + "%' OR description like'%"+ textS + "%'";
+        Cursor cursor = db.rawQuery(query, null);
 
-        if (areaS != "Tất cả" && priceS == "Tăng dần" && typeS != "Tất cả"){
-            cursorS = db.rawQuery("select * from ForRentDetails where type = ? AND area = ? order by price ASC",
-                    new String[] {typeS,areaS});
-        }
-        if (areaS != "Tất cả" && priceS == "Giảm dần" && typeS != "Tất cả"){
-            cursorS = db.rawQuery("select * from ForRentDetails where type = ? AND area = ? order by price DESC",
-                    new String[] {typeS,areaS});
-        }
-        if (areaS == "Tất cả" && priceS == "Tăng dần" && typeS != "Tất cả"){
-            cursorS = db.rawQuery("select * from ForRentDetails where area = ? order by price ASC",
-                    new String[] {typeS,areaS});
-        }
-        if (areaS == "Tất cả" && priceS == "Giảm dần" && typeS != "Tất cả"){
-            cursorS = db.rawQuery("select * from ForRentDetails where area = ? order by price DESC",
-                    new String[] {typeS,areaS});
-        }
-        if (areaS != "Tất cả" && priceS == "Tăng dần" && typeS == "Tất cả"){
-            cursorS = db.rawQuery("select * from ForRentDetails where type = ? order by price ASC",
-                    new String[] {typeS,areaS});
-        }
-        if (areaS != "Tất cả" && priceS == "Giảm dần" && typeS == "Tất cả"){
-            cursorS = db.rawQuery("select * from ForRentDetails where type = ? order by price DESC",
-                    new String[] {typeS,areaS});
-        }
-        if (areaS == "Tất cả" && priceS == "Tăng dần" && typeS == "Tất cả"){
-            cursorS = db.rawQuery("select * from ForRentDetails order by price ASC",
-                    new String[] {typeS,areaS});
-        }
-        if (areaS == "Tất cả" && priceS == "Giảm dần" && typeS == "Tất cả"){
-            cursorS = db.rawQuery("select * from ForRentDetails order by price DESC",
-                    new String[] {typeS,areaS});
-        }
-
-        while(cursorS.moveToNext()) {
-            String address = cursorS.getString(0);   //0 is the number of address column database table
-            String type = cursorS.getString(1);
-            int price = Integer.parseInt(cursorS.getString(2));
-            String area = cursorS.getString(3);
-            String contact = cursorS.getString(4);
-            String description =  cursorS.getString(5);
-
-
+        while(cursor.moveToNext()) {
+            String address = cursor.getString(0);   //0 is the number of id column in your database table
+            String type = cursor.getString(1);
+            int price = Integer.parseInt(cursor.getString(2));
+            String area = cursor.getString(3);
+            String contact = cursor.getString(4);
+            String description =  cursor.getString(5);
 
             ForRent newForRent = new ForRent(address, type, price, area, contact, description);
-            forRentList.add(newForRent);
+            forRentListSearch.add(newForRent);
         }
-        return forRentList;
-    }*/
+        return forRentListSearch;
+    }
 }
