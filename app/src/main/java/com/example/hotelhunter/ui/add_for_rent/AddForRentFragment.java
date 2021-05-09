@@ -90,11 +90,11 @@ public class AddForRentFragment extends Fragment implements AdapterView.OnItemSe
                 int selectedID = rgType.getCheckedRadioButtonId();
                 RadioButton selectedRadioButton = (RadioButton) getView().findViewById(selectedID);
                 String typeTxt = selectedRadioButton.getText().toString();
-                if (edtPrice.getText().toString().length() < 6) {
+                if (edtPrice.length() < 6) {
                     Toast.makeText(getActivity().getApplicationContext(), "Giá phòng không hợp lệ", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                int price = Integer.parseInt(edtPrice.getText().toString());
+                String price = edtPrice.getText().toString();
                 if(spinnerArea.getSelectedItem().toString() == "-Chọn quận/huyện-") {
                     Toast.makeText(getActivity().getApplicationContext(), "Vui lòng chọn khu vực", Toast.LENGTH_SHORT).show();
                     return;

@@ -71,7 +71,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
                 // Initialize fieldList of place
                 List<Place.Field> fieldList = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG, Place.Field.NAME);
                 // Create autocomplete intent
-                Intent intentAutocomplete = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fieldList)
+                Intent intentAutocomplete = new Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fieldList)
                                                             .build(getActivity());
                 // Start activity result
                 startActivityForResult(intentAutocomplete, PERMISSIONS_REQUEST_CODE);
@@ -121,6 +121,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
         ggMap = googleMap;
         //Enabled my location
         ggMap.setMyLocationEnabled(true);
+        ggMap.getUiSettings().setZoomControlsEnabled(true);
         if (mapView != null && mapView.findViewById(Integer.parseInt("1")) != null) {
             View locationButton = ((View) mapView.findViewById(Integer.parseInt("1"))
                                         .getParent()).findViewById(Integer.parseInt("2"));

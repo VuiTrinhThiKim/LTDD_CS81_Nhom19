@@ -17,7 +17,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create Table ForRentDetails(address TEXT primary key, type TEXT, price int, area TEXT, contact TEXT, description TEXT)");
+        db.execSQL("create Table ForRentDetails(address TEXT primary key, type TEXT, price TEXT, area TEXT, contact TEXT, description TEXT)");
     }
 
     @Override
@@ -25,7 +25,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("drop Table if exists ForRentDetails");
     }
 
-    public boolean insertDBData(String address, String type, int price, String area, String contact,String description) {
+    public boolean insertDBData(String address, String type, String price, String area, String contact,String description) {
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("address", address);
@@ -41,7 +41,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return true;
     }
-    public boolean updateDBData(String address, String type, int price, String area, String contact,String details) {
+    public boolean updateDBData(String address, String type, String price, String area, String contact,String details) {
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("type", type);
@@ -91,7 +91,7 @@ public class DBHelper extends SQLiteOpenHelper {
         while(cursor.moveToNext()) {
             String address = cursor.getString(0);   //0 is the number of id column in your database table
             String type = cursor.getString(1);
-            int price = Integer.parseInt(cursor.getString(2));
+            String price = cursor.getString(2);
             String area = cursor.getString(3);
             String contact = cursor.getString(4);
             String description =  cursor.getString(5);
@@ -107,15 +107,14 @@ public class DBHelper extends SQLiteOpenHelper {
         String textS = text.trim();
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "select * from ForRentDetails " +
-                "where address like '%" + textS + "%' OR type like'%" + textS + "%' OR " +
-                "price like '%" + Integer.parseInt(textS) + "%' OR area like'%" + textS + "%' OR " +
-                "contact like '%" + textS + "%' OR description like'%"+ textS + "%'";
+                "where address like '" + textS + "%' OR type like'%" + textS + "%' OR " +
+                "price like '" + textS + "%' OR area like'%" + textS + "%' OR description like'%"+ textS + "%'";
         Cursor cursor = db.rawQuery(query, null);
 
         while(cursor.moveToNext()) {
             String address = cursor.getString(0);   //0 is the number of id column in your database table
             String type = cursor.getString(1);
-            int price = Integer.parseInt(cursor.getString(2));
+            String price = cursor.getString(2);
             String area = cursor.getString(3);
             String contact = cursor.getString(4);
             String description =  cursor.getString(5);

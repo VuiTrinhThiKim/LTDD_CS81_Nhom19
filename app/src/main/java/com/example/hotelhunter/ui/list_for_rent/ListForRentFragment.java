@@ -24,9 +24,9 @@ import java.util.ArrayList;
 public class ListForRentFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
     DBHelper db;
-    ArrayList<ForRent> mForRentList;
+    ArrayList<ForRent> mForRentList, sForRentList;
     ListView lvForRent, lvSearch;
-    private SearchView searchView;
+    SearchView searchView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -37,52 +37,42 @@ public class ListForRentFragment extends Fragment implements AdapterView.OnItemS
 
         mForRentList = db.viewDBData();
 
-        mForRentList.add(new ForRent("371 Nguyễn Kiệm, phường 3, quận Gò Vấp, Thành phố Hồ Chí Minh", "Chung cư",
-                5000000, "Quận Gò Vấp", "0123456789", "ĐH Mở CS Nguyễn Kiệm"));
+        db.insertDBData("371 Nguyễn Kiệm, phường 3, quận Gò Vấp, Thành phố Hồ Chí Minh", "Chung cư",
+                "5000000", "Quận Gò Vấp", "0123456789", "ĐH Mở CS Nguyễn Kiệm");
+        db.insertDBData("31 Nguyễn Văn Công, phường 3, quận Gò Vấp, Thành phố Hồ Chí Minh", "Căn hộ",
+                "4000000", "Quận Gò Vấp", "0789654132", "Nhà Cho Thuê");
+        db.insertDBData("174 Lí Thường Kiệt, phường 6, quận 11, Thành phố Hồ Chí Minh", "Nhà trọ",
+                "3000000", "Quận 11", "0123456789", "Phòng cho thuê, không chung chủ, giờ giấc tự do");
 
-        mForRentList.add(new ForRent("31 Nguyễn Văn Công, phường 3, quận Gò Vấp, Thành phố Hồ Chí Minh", "Căn hộ",
-                5000000, "Quận Gò Vấp", "0789654132", "Nhà Cho Thuê"));
+        db.insertDBData("97 Võ Văn Tần, phường 6, quận 3, Thành phố Hồ Chí Minh", "Chung cư",
+                "2500000", "Quận 3", "0123456789", "ĐH Mở CS Võ Văn Tần");
 
-        mForRentList.add(new ForRent("174 Lí Thường Kiệt, phường 6, quận 11, Thành phố Hồ Chí Minh", "Nhà trọ",
-                5000000, "Quận 11", "0123456789", "Phòng cho thuê, không chung chủ, giờ giấc tự do"));
-
-        mForRentList.add(new ForRent("97 Võ Văn Tần, phường 6, quận 3, Thành phố Hồ Chí Minh", "Chung cư",
-                5000000, "Quận 3", "0123456789", "ĐH Mở CS Võ Văn Tần"));
-
-        mForRentList.add(new ForRent("79 Cao Thắng, phường 3, quận 3, Thành phố Hồ Chí Minh", "Nhà trọ",
-                5000000, "Quận 3", "0123456789", "Nhà cho thuê nguyên căn"));
+        db.insertDBData("79 Cao Thắng, phường 3, quận 3, Thành phố Hồ Chí Minh", "Nhà trọ",
+                "3000000", "Quận 3", "0123456789", "Nhà cho thuê nguyên căn");
 
         ForRentListAdapter myAdapter = new ForRentListAdapter(getActivity().getApplicationContext(),mForRentList);
         lvForRent.setAdapter(myAdapter);
 
 
-        searchView = (SearchView) view.findViewById(R.id.item_search);
-        searchView.setMaxWidth(Integer.MAX_VALUE);
-        searchView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+        searchView = (SearchView) view.findViewById(R.id.search_bar2);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                ArrayList<ForRent> forRentListSearch = new ArrayList<>();
-                DBHelper searchDB = new DBHelper(getActivity());
-                forRentListSearch  = searchDB.searchDBData(newText);
-
-                lvSearch = (ListView) getView().findViewById(R.id.lv_for_rent);
-
-                ForRentListAdapter myAdapterSearch = new ForRentListAdapter(getActivity().getApplicationContext(),forRentListSearch);
-                lvSearch.setAdapter(myAdapterSearch);
+                sForRentList = new ArrayList<>();
+                String sText = newText.trim();
+                sForRentList = db.searchDBData(sText);
+                ForRentListAdapter sListAdapter = new ForRentListAdapter(getActivity().getApplicationContext(),sForRentList);
+                lvForRent.setAdapter(sListAdapter);
                 return true;
             }
         });
+
         return view;
     }
 
