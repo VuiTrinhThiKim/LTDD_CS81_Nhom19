@@ -11,12 +11,13 @@ import android.widget.TextView;
 import com.example.hotelhunter.R;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class ForRentListAdapter extends BaseAdapter {
 
-    private Context mContext;
-    private ArrayList<ForRent> mForRentList;
-
+    Context mContext;
+    ArrayList<ForRent> mForRentList;
     public ForRentListAdapter(Context mContext, ArrayList<ForRent> mForRentList) {
         this.mContext = mContext;
         this.mForRentList = mForRentList;
@@ -60,12 +61,20 @@ public class ForRentListAdapter extends BaseAdapter {
         ForRent num = mForRentList.get(position);
         holder.address.setText(num.getAddress());
         holder.type.setText(num.getType());
-        holder.price.setText(Integer.toString(num.getPrice()));
+        holder.price.setText(num.getPrice());
         holder.area.setText(num.getArea());
         holder.contact.setText(num.getContact());
         holder.description.setText(num.getDescription());
 
         return convertView;
+    }
+
+    public void searchFilter(String strSearch){
+        strSearch = strSearch.toLowerCase(Locale.getDefault());
+        mForRentList.clear();
+        if(strSearch.length() == 0) {
+            mForRentList.addAll(mForRentList);
+        }
     }
 
     private static class ViewHolder{

@@ -3,12 +3,12 @@ package com.example.hotelhunter.dbForRent;
 public class ForRent {
     private String address;
     private String type;
-    private int price;
+    private String price;
     private String area;
     private String contact;
     private String description;
 
-    public ForRent(String address, String type, int price, String area, String contact,String description) {
+    public ForRent(String address, String type, String price, String area, String contact,String description) {
         this.address = address;
         this.type = type;
         this.price = price;
@@ -25,7 +25,7 @@ public class ForRent {
         return type;
     }
 
-    public int getPrice() {
+    public String getPrice() {
         return price;
     }
 
@@ -49,7 +49,7 @@ public class ForRent {
         this.type = type;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
