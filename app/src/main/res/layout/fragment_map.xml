@@ -9,29 +9,22 @@
 
     <fragment
         android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="com.google.android.gms.maps.SupportMapFragment"/>
+        android:layout_height="660dp" />
 
-    <LinearLayout
+    <EditText
+        android:id="@+id/edit_text_autocomplete"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <EditText
-            android:id="@+id/edit_text_autocomplete"
-            android:layout_width="373dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_gravity="left"
-            android:padding="16dp"
-            android:drawablePadding="16dp"
-            android:hint="Enter address..."
-            android:drawableLeft="@drawable/ic_baseline_search"
-            android:gravity="center_vertical"
-            android:background="@drawable/bg_search"
-            android:singleLine="true"/>
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:background="@drawable/bg_search"
+        android:drawableLeft="@drawable/ic_baseline_search"
+        android:drawablePadding="16dp"
+        android:gravity="center_vertical"
+        android:hint="Nhập địa chỉ..."
+        android:padding="12dp"
+        android:singleLine="true" />
 
 
 </RelativeLayout>

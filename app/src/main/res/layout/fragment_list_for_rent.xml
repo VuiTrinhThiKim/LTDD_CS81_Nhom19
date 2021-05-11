@@ -9,6 +9,7 @@
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_bar2"
+        android:background="@drawable/bg_search"
         app:queryHint="Tìm kiếm theo địa chỉ, khu vực, giá,.."
         app:iconifiedByDefault="false"
         android:layout_width="match_parent"
