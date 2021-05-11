@@ -69,4 +69,21 @@
             android:text="2km"/>
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="485dp"
+        android:layout_marginLeft="250dp"
+        >
+    <Button
+
+        android:id="@+id/btn_direction"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/ic_directions_24"
+        android:text=""/>
+
+    </LinearLayout>
 </RelativeLayout>

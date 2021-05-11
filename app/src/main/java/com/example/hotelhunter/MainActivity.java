@@ -1,10 +1,14 @@
 package com.example.hotelhunter;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.hotelhunter.ui.list_for_rent.ListForRentFragment;
 import com.example.hotelhunter.ui.map.MapFragment;
 import com.example.hotelhunter.ui.add_for_rent.AddForRentFragment;
+import com.google.android.libraries.places.api.Places;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
     }
         /*viewPager2 = findViewById(R.id.viewpager2);
         bottomNavigationView = findViewById(R.id.nav_view);
@@ -91,4 +96,6 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager.setAdapter(pageAdapter);
     }*/
+
+
 }
