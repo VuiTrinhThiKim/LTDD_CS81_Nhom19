@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Hotel Hunter</string>
     <string name="title_map">Bản đồ</string>
-    <string name="title_list">Danh sách cho thuê</string>
+    <string name="title_list">Đang cho thuê</string>
     <string name="title_add">Thêm địa điểm</string>
+    <string name="title_acc">Tài khoản</string>
     <string name="api_key">AIzaSyAXo3zctBbg3zAKpYQOulZOhe5I8wQj3h8</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

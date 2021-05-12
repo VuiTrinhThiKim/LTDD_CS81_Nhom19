@@ -6,6 +6,7 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
+    useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.example.hotelhunter"
         minSdkVersion 19
@@ -60,4 +61,5 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    compile group: 'cz.msebera.android', name: 'httpclient', version: '4.4.1.1'
 }
