@@ -14,8 +14,8 @@ public class ViewPageAdapter extends FragmentStateAdapter {
 
     private final List<Fragment> fragmentList = new ArrayList<>();
 
-    public ViewPageAdapter(@NonNull FragmentManager fragmentManager, Lifecycle b) {
-        super(fragmentManager, b);
+    public ViewPageAdapter(@NonNull FragmentManager fragmentManager, Lifecycle lifecycle) {
+        super(fragmentManager, lifecycle);
     }
 
     public void addFragment(Fragment fragment) {
@@ -30,6 +30,6 @@ public class ViewPageAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 3;
+        return fragmentList.size();
     }
 }

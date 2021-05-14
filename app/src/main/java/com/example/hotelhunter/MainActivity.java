@@ -1,16 +1,22 @@
 package com.example.hotelhunter;
 
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+=======
+import android.view.MenuItem;
+>>>>>>> 2e1be3515dce8b4fb45a9557a87aafeb8244a132
 
+import com.example.hotelhunter.ui.account.AccountFragment;
 import com.example.hotelhunter.ui.list_for_rent.ListForRentFragment;
 import com.example.hotelhunter.ui.map.MapFragment;
 import com.example.hotelhunter.ui.add_for_rent.AddForRentFragment;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -25,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     MapFragment mapFragment;
     ListForRentFragment listForRentFragment;
     AddForRentFragment addForRentFragment;
+    AccountFragment accountFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_map, R.id.navigation_list_for_rent, R.id.navigation_add_for_rent)
+                R.id.navigation_map, R.id.navigation_list_for_rent, R.id.navigation_add_for_rent, R.id.navigation_account)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
@@ -48,14 +55,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.navigation_home:
+                    case R.id.navigation_map:
                         viewPager2.setCurrentItem(0, false);
                         break;
-                    case R.id.navigation_dashboard:
+                    case R.id.navigation_list_for_rent:
                         viewPager2.setCurrentItem(1, false);
                         break;
-                    case R.id.navigation_notifications:
+                    case R.id.navigation_add_for_rent:
                         viewPager2.setCurrentItem(2, false);
+                    case R.id.navigation_account:
+                        viewPager2.setCurrentItem(3, false);
                 }
                 return false;
             }
@@ -67,13 +76,16 @@ public class MainActivity extends AppCompatActivity {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels);
                 switch (position) {
                     case 0:
-                        bottomNavigationView.getMenu().findItem(R.id.navigation_home).setChecked(true);
+                        bottomNavigationView.getMenu().findItem(R.id.navigation_map).setChecked(true);
                         break;
                     case 1:
-                        bottomNavigationView.getMenu().findItem(R.id.navigation_dashboard).setChecked(true);
+                        bottomNavigationView.getMenu().findItem(R.id.navigation_list_for_rent).setChecked(true);
                         break;
                     case 2:
-                        bottomNavigationView.getMenu().findItem(R.id.navigation_notifications).setChecked(true);
+                        bottomNavigationView.getMenu().findItem(R.id.navigation_add_for_rent).setChecked(true);
+                        break;
+                    case 3:
+                        bottomNavigationView.getMenu().findItem(R.id.navigation_account).setChecked(true);
                         break;
                 }
             }
@@ -86,13 +98,15 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager2 viewPager) {
 
         ViewPageAdapter pageAdapter = new ViewPageAdapter(getSupportFragmentManager(), getLifecycle());
-        homeFragment = new HomeFragment();
-        dashboardFragment = new DashboardFragment();
-        notificationsFragment = new NotificationsFragment();
+        mapFragment = new MapFragment();
+        listForRentFragment = new ListForRentFragment();
+        addForRentFragment = new AddForRentFragment();
+        accountFragment = new AccountFragment();
 
-        pageAdapter.addFragment(homeFragment);
-        pageAdapter.addFragment(dashboardFragment);
-        pageAdapter.addFragment(notificationsFragment);
+        pageAdapter.addFragment(mapFragment);
+        pageAdapter.addFragment(listForRentFragment);
+        pageAdapter.addFragment(addForRentFragment);
+        pageAdapter.addFragment(accountFragment);
 
         viewPager.setAdapter(pageAdapter);
     }*/

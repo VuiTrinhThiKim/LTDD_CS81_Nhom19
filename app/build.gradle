@@ -5,6 +5,10 @@ plugins {
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2e1be3515dce8b4fb45a9557a87aafeb8244a132
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.example.hotelhunter"
@@ -60,4 +64,5 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    compile group: 'cz.msebera.android', name: 'httpclient', version: '4.4.1.1'
 }
