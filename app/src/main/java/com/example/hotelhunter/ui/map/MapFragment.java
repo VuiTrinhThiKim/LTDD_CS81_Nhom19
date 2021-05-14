@@ -6,10 +6,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-<<<<<<< HEAD
+
 import android.location.Address;
-=======
->>>>>>> 2e1be3515dce8b4fb45a9557a87aafeb8244a132
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
@@ -39,10 +37,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
-<<<<<<< HEAD
+
 import com.google.android.gms.maps.model.Marker;
-=======
->>>>>>> 2e1be3515dce8b4fb45a9557a87aafeb8244a132
+
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -52,11 +49,9 @@ import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 
-<<<<<<< HEAD
+
 import org.w3c.dom.Document;
 
-=======
->>>>>>> 2e1be3515dce8b4fb45a9557a87aafeb8244a132
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -65,10 +60,9 @@ import java.util.Map;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.LOCATION_SERVICE;
-<<<<<<< HEAD
+
 import static android.content.Context.NETWORK_STATS_SERVICE;
-=======
->>>>>>> 2e1be3515dce8b4fb45a9557a87aafeb8244a132
+
 import static android.widget.Toast.makeText;
 import static com.example.hotelhunter.ui.map.GetDirectionsAsyncTask.DESTINATION_LAT;
 import static com.example.hotelhunter.ui.map.GetDirectionsAsyncTask.DESTINATION_LONG;
@@ -81,22 +75,18 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
     private GoogleMap ggMap;
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     private Polyline newPolyline;
-    private LatLngBounds latlngBounds;
-<<<<<<< HEAD
-    private static LatLng place1;
-    private static LatLng place2;
+    //private LatLngBounds latlngBounds;
+
+    private LatLng place1;
 
     private List<Marker> destinationMarker = new ArrayList<>();
 
     private ProgressDialog progressDialog;
-    //private MarkerOptions place3, place4;
-=======
-    private static LatLng AMSTERDAM;
-    private static LatLng PARIS;
->>>>>>> 2e1be3515dce8b4fb45a9557a87aafeb8244a132
+
     EditText edtSearchAutocomplete;
     View mapView;
     Button btn_direct;
+    MapDirection md;
 
     public MapFragment() {
 
@@ -130,16 +120,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
                         .build(getActivity());
 
                 Intent intentAutocompleteIntent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fieldList)
-<<<<<<< HEAD
-                                                            .build(getActivity());
-=======
+
                         .build(getActivity());
->>>>>>> 2e1be3515dce8b4fb45a9557a87aafeb8244a132
+
 
                 // Start activity result
                 startActivityForResult(intentAutocomplete, PERMISSIONS_REQUEST_CODE);
 
-<<<<<<< HEAD
+
             }
         });
 
@@ -167,37 +155,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
                             Uri.parse(sendstring));
                     startActivityForResult(intent, PERMISSIONS_REQUEST_CODE);
                 }
-=======
->>>>>>> 2e1be3515dce8b4fb45a9557a87aafeb8244a132
+
             }
 
         });
-<<<<<<< HEAD
-
-
-        //place3 = new MarkerOptions().position(new LatLng(27.658143, 85.3199503)).title("Location 1");
-        //place4 = new MarkerOptions().position(new LatLng(27.667491, 85.3208583)).title("Location 2");
-
-
-=======
-        btn_direct = (Button) view.findViewById(R.id.btn_direction);
-        Places.initialize(getActivity().getApplicationContext(), getString(R.string.api_key));
-
-        btn_direct.setFocusable(false);
-        btn_direct.setOnClickListener(new View.OnClickListener() {
-            @Override
-                  public void onClick(View v) {
-                      Toast.makeText(MapFragment.this.getContext(),"Bạn đã click",
-                              Toast.LENGTH_SHORT).show();
-                      findDirections(21.0169598, 105.8114176,20.9889196,105.8635858,null );
-                  }
-        });
->>>>>>> 2e1be3515dce8b4fb45a9557a87aafeb8244a132
+        //place1 = new MarkerOptions().position(new LatLng(27.658143, 85.3199503)).title("Location 1");
         return view;
     }
-
-
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -270,18 +234,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
 
             }
         });
-<<<<<<< HEAD
 
 
 
-
-=======
-        AMSTERDAM = new LatLng(21.0169598, 105.8114176);
-        ggMap.addMarker(new MarkerOptions().position(AMSTERDAM).title("Marker in Sydney"));
-        ggMap.moveCamera(CameraUpdateFactory.newLatLng(AMSTERDAM));
-
-        PARIS = new LatLng(20.9889196,105.8635858);
->>>>>>> 2e1be3515dce8b4fb45a9557a87aafeb8244a132
     }
 
     void checkSelfPermission(){
@@ -317,14 +272,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
         }
     }
 
-<<<<<<< HEAD
 
-
-
-
-=======
->>>>>>> 2e1be3515dce8b4fb45a9557a87aafeb8244a132
-    public void handleGetDirectionsResult(ArrayList<LatLng> directionPoints) {
+    /*public void handleGetDirectionsResult(ArrayList<LatLng> directionPoints) {
         PolylineOptions rectLine = new PolylineOptions().width(5).color(
                 Color.RED);
 
@@ -335,19 +284,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
             newPolyline.remove();
         }
         newPolyline = ggMap.addPolyline(rectLine);
-<<<<<<< HEAD
-        latlngBounds = createLatLngBoundsObject(place1,place2);
-=======
-        latlngBounds = createLatLngBoundsObject(AMSTERDAM,PARIS);
->>>>>>> 2e1be3515dce8b4fb45a9557a87aafeb8244a132
+        latlngBounds = createLatLngBoundsObject(null , null);
+
         ggMap.animateCamera(CameraUpdateFactory.newLatLngBounds(
                 latlngBounds, 400, 400, 150));
 
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 2e1be3515dce8b4fb45a9557a87aafeb8244a132
     private LatLngBounds createLatLngBoundsObject(LatLng firstLocation,
                                                   LatLng secondLocation) {
         if (firstLocation != null && secondLocation != null) {
@@ -377,15 +320,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
         GetDirectionsAsyncTask asyncTask = new GetDirectionsAsyncTask(this);
         asyncTask.execute(map);
 
-<<<<<<< HEAD
+
          //asyncTask.cancel(true);
-    }
+    }*/
 
 
     }
-=======
-    }
 
 
-}
->>>>>>> 2e1be3515dce8b4fb45a9557a87aafeb8244a132
+
+

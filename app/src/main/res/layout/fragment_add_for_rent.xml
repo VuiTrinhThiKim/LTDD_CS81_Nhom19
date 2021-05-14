@@ -10,7 +10,7 @@ tools:context=".ui.add_for_rent.AddForRentFragment">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="20dp"
         android:textAlignment="center"
         android:text="THÔNG TIN CHO THUÊ"
         android:textSize="34sp"
@@ -24,7 +24,7 @@ tools:context=".ui.add_for_rent.AddForRentFragment">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="10dp">
 
         <TextView

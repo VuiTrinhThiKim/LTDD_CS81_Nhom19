@@ -1,13 +1,12 @@
 package com.example.hotelhunter;
 
 import android.os.Bundle;
-<<<<<<< HEAD
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-=======
 import android.view.MenuItem;
->>>>>>> 2e1be3515dce8b4fb45a9557a87aafeb8244a132
+
 
 import com.example.hotelhunter.ui.account.AccountFragment;
 import com.example.hotelhunter.ui.list_for_rent.ListForRentFragment;

@@ -42,7 +42,7 @@
             android:background="@drawable/ic_directions_24dp"
             android:text=""/>
 
-<<<<<<< HEAD
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,18 +50,11 @@
         android:layout_marginTop="485dp"
         android:layout_marginLeft="250dp"
         >
-    <Button
 
-        android:id="@+id/btn_direction"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginLeft="10dp"
-        android:background="@drawable/ic_directions_24"
-        android:text=""/>
+
 
     </LinearLayout>
 
-=======
     </LinearLayout>
->>>>>>> 2e1be3515dce8b4fb45a9557a87aafeb8244a132
+
 </RelativeLayout>
