@@ -112,6 +112,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
         edtSearchAutocomplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                edtSearchAutocomplete.setError(null);
                 // Initialize fieldList of place
                 List<Place.Field> fieldList = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG, Place.Field.NAME);
                 // Create autocomplete intent
@@ -148,6 +149,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
                 if (TextUtils.isEmpty(destination)) {
                     edtSearchAutocomplete.setError("Enter Destination Point");
                 } else {
+
                     String sendstring="http://maps.google.com/maps?saddr=" +
                            "&daddr=" +
                             destination;
