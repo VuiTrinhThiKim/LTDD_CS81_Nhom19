@@ -5,8 +5,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+
+import com.example.hotelhunter.ui.list_for_rent.ListForRentFragment;
 
 import java.util.ArrayList;
 
@@ -123,5 +127,9 @@ public class DBHelper extends SQLiteOpenHelper {
             forRentListSearch.add(newForRent);
         }
         return forRentListSearch;
+    }
+
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+
     }
 }

@@ -1,6 +1,9 @@
 package com.example.hotelhunter.ui.list_for_rent;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
@@ -18,15 +22,24 @@ import com.example.hotelhunter.dbForRent.ForRent;
 import com.example.hotelhunter.dbForRent.ForRentListAdapter;
 import com.example.hotelhunter.R;
 import com.example.hotelhunter.dbForRent.DBHelper;
+import com.example.hotelhunter.ui.map.MapFragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListForRentFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
+
     DBHelper db;
+    ForRentListAdapter frL;
     ArrayList<ForRent> mForRentList, sForRentList;
     ListView lvForRent, lvSearch;
     SearchView searchView;
+    public class Item
+    {
+        public long id;
+        public String name;
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -72,6 +85,17 @@ public class ListForRentFragment extends Fragment implements AdapterView.OnItemS
                 return true;
             }
         });
+        //db = (ListView) view.findViewById(R.id.lv_for_rent);
+
+        //db.setFocusable(false);
+        lvForRent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(ListForRentFragment.this.getContext(),"Khoảng cách vị trí của bạn",
+                        Toast.LENGTH_LONG).show();
+
+            }
+        });
 
         return view;
     }
@@ -87,10 +111,25 @@ public class ListForRentFragment extends Fragment implements AdapterView.OnItemS
         spinner.setAdapter(areaArrAdapter);
         spinner.setSelection(0);
         spinner.setOnItemSelectedListener(this);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            List<String> sIds = new ArrayList<String>();//add ids in this list
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
     }
+
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
 
     }
 

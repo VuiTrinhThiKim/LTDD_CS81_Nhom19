@@ -1,23 +1,42 @@
 package com.example.hotelhunter.ui.map;
 
+
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.text.TextUtils;
+
 import android.os.Bundle;
 import android.support.v4.os.IResultReceiver;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+
+import com.example.hotelhunter.R;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
+import com.google.gson.Gson;
+
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.hotelhunter.MainActivity;
 import com.example.hotelhunter.R;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -28,8 +47,14 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
+
 import org.apache.http.client.HttpClient;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -45,6 +70,7 @@ public class MapDirection extends MapFragment implements OnMapReadyCallback {
 
 
     public Document getDocument(LatLng start, LatLng end, String mode) {
+
         String url = "http://maps.googleapis.com/maps/api/directions/xml?"
                 + "origin=" + start.latitude + "," + start.longitude
                 + "&destination=" + end.latitude + "," + end.longitude
@@ -199,4 +225,5 @@ public class MapDirection extends MapFragment implements OnMapReadyCallback {
         }
         return poly;
     }
+
 }

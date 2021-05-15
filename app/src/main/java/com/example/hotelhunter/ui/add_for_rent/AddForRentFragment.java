@@ -2,7 +2,10 @@ package com.example.hotelhunter.ui.add_for_rent;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,10 +24,17 @@ import androidx.fragment.app.Fragment;
 
 import com.example.hotelhunter.R;
 import com.example.hotelhunter.dbForRent.DBHelper;
+import com.example.hotelhunter.ui.map.MapFragment;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.widget.Autocomplete;
+
+import static android.app.Activity.RESULT_OK;
 
 public class AddForRentFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+    private static final int PERMISSIONS_REQUEST_CODE = 100;
 
-    EditText edtAddress, edtPrice, edtContact, edtDescription;
+    EditText edtAddress, edtPrice, edtContact, edtDescription,edtSearchAutocomplete;
     RadioGroup rgType;
     RadioButton rbNhaTro, rbChungCu, rbCanHo;
     Spinner spinnerArea;
@@ -42,6 +52,7 @@ public class AddForRentFragment extends Fragment implements AdapterView.OnItemSe
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_for_rent, container, false);
 
+        //edtSearchAutocomplete = (EditText) view.findViewById(R.id.edit_text_autocomplete) ;
         edtAddress = (EditText) view.findViewById(R.id.edt_address);
         edtPrice = (EditText) view.findViewById(R.id.edt_price);
         edtContact = (EditText) view.findViewById(R.id.edt_contact);
@@ -79,11 +90,14 @@ public class AddForRentFragment extends Fragment implements AdapterView.OnItemSe
             @Override
             public void onClick(View v) {
 
-                if (edtAddress.length() == 0) {
+
+               if (edtAddress.length() == 0 ) {
+
                     Toast.makeText(getActivity().getApplicationContext(), "Vui lòng điền đúng địa chỉ", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                String addressTxt = edtAddress.getText().toString().trim();
+
+                String addressTxt = edtSearchAutocomplete.getText().toString().trim();
                 if ((rgType.getCheckedRadioButtonId() == -1)) {
                     Toast.makeText(getActivity().getApplicationContext(), "Vui lòng chọn loại phòng cho thuê", Toast.LENGTH_SHORT).show();
                     return;
