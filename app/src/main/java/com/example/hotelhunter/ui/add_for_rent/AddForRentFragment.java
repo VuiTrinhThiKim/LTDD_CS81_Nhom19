@@ -74,14 +74,8 @@ public class AddForRentFragment extends Fragment implements AdapterView.OnItemSe
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                edtAddress.setText("");
-                edtAddress.setHint(" VD: 371 Nguyễn Kiệm, phường 3, quận Gò Vấp, TP. HCM");
-                rgType.clearCheck();
-                edtPrice.setText("");
-                edtPrice.setHint(" VD: 3000000");
-                AddSpinner();
-                edtContact.setText("");
-                edtDescription.setText("");
+                resetText();
+
                 Toast.makeText(getActivity(), "Đặt lại", Toast.LENGTH_SHORT).show();
             }
         });
@@ -128,7 +122,7 @@ public class AddForRentFragment extends Fragment implements AdapterView.OnItemSe
 
                 Boolean checkInsertData = db.insertDBData(addressTxt,typeTxt, price, areaTxt, contact, description);
                 if (checkInsertData == true) {
-
+                    resetText();
                     AlertDialog.Builder builder = new  AlertDialog.Builder(getActivity());
                     builder.setTitle("THÊM THÔNG TIN THÀNH CÔNG");
                     builder.setPositiveButton("Đóng", new DialogInterface.OnClickListener() {
@@ -154,7 +148,16 @@ public class AddForRentFragment extends Fragment implements AdapterView.OnItemSe
 
         return view;
     }
-
+    private void resetText(){
+        edtAddress.setText("");
+        edtAddress.setHint(" VD: 371 Nguyễn Kiệm, phường 3, quận Gò Vấp, TP. HCM");
+        rgType.clearCheck();
+        edtPrice.setText("");
+        edtPrice.setHint(" VD: 3000000");
+        AddSpinner();
+        edtContact.setText("");
+        edtDescription.setText("");
+    }
     private void AddSpinner() {
         ArrayAdapter<String> areaArrAdapter = new ArrayAdapter<String> (getActivity(), android.R.layout.simple_spinner_item, areas) {
             @Override
