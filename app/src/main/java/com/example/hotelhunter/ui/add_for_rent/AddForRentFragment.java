@@ -34,7 +34,7 @@ import static android.app.Activity.RESULT_OK;
 public class AddForRentFragment extends Fragment implements AdapterView.OnItemSelectedListener {
     private static final int PERMISSIONS_REQUEST_CODE = 100;
 
-    EditText edtAddress, edtPrice, edtContact, edtDescription,edtSearchAutocomplete;
+    EditText edtAddress, edtPrice, edtContact, edtDescription;
     RadioGroup rgType;
     RadioButton rbNhaTro, rbChungCu, rbCanHo;
     Spinner spinnerArea;
@@ -43,7 +43,6 @@ public class AddForRentFragment extends Fragment implements AdapterView.OnItemSe
                         "Huyện Bình Chánh", "Huyện Hóc Môn", "Huyện Củ Chi", "Huyện Cần Giờ", "-Chọn quận/huyện-"};
     Button btInsert, btnReset;
     DBHelper db;
-
     public AddForRentFragment() {
 
     }
@@ -90,14 +89,15 @@ public class AddForRentFragment extends Fragment implements AdapterView.OnItemSe
             @Override
             public void onClick(View v) {
 
+                String addressPattern = "[a-zA-Z0-9-/\\s]+,[a-zA-Z0-9-/\\s]+,[a-zA-Z0-9-/\\s]+,[a-zA-Z0-9-/\\s]+";
+                String  removeAccent = VNCharacter.removeAccent(edtAddress.getText().toString());
 
-               if (edtAddress.length() == 0 ) {
-
+                if (edtAddress.length() == 0 || !(removeAccent.matches(addressPattern))) {
                     Toast.makeText(getActivity().getApplicationContext(), "Vui lòng điền đúng địa chỉ", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                String addressTxt = edtSearchAutocomplete.getText().toString().trim();
+                String addressTxt = edtAddress.getText().toString().trim();
                 if ((rgType.getCheckedRadioButtonId() == -1)) {
                     Toast.makeText(getActivity().getApplicationContext(), "Vui lòng chọn loại phòng cho thuê", Toast.LENGTH_SHORT).show();
                     return;
@@ -177,6 +177,8 @@ public class AddForRentFragment extends Fragment implements AdapterView.OnItemSe
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
